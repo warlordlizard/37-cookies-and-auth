@@ -26,15 +26,25 @@ Configure the root of your repository with the following files and directories. 
 ## Feature Tasks
 ##### Minimum Requirements
 
+### Components
+Granted you are following the file system organization and component naming conventions presented during lecture, your components should be organized as follows:
+
+```html
+<App />
+  <Provider /> 
+    <BrowserRouter />
+      <LandingContainer />
+        <AuthForm />
+```
+
 ### Clone Sluggram
 Clone, configure and run the [sluggram](http://github.com/slugbyte/sluggram) application.
 
 ### Create a Frontend
-This week, you'll be creating a frontend application for a social media style gallery and image uploading application.  Your job will be to create a frontend that utilizes a locally cloned version of the *sluggram-backend* API and follows react and redux best practices.  The naming, creation, and organization of your application components are up to you.  That said, the following requirements should be accounted for:
-* there should be a `<LandingPage>` component (or similar) that enables a user to *sign up* or *sign in*.
-* the user should be redirected to a `<DashboardPage>` (or similar) when they sign up or sign in
-* the users authentication token should be stored in a cookie (or `localStorage`) on sign in
+This week, you'll be creating a frontend application for a social media style gallery and image uploading application.  Your job will be to create a frontend that utilizes a locally cloned version of the *sluggram-backend* API and follows react and redux best practices.  The naming, creation, and organization of your application components are up to you.  That said, the following requirements should be accounted for in order to consider today's assignment complete:
+* there should be a `<LandingPage>` component (or similar) that contains an `<AuthForm>` component (or similar).  This component should enable the ability for a user to *sign up* or *sign in*.
+* on *sign up* or *sign in*, the users authentication token should be stored in a cookie or `localStorage`
 
 ### Testing
 * Test all of your authentication based actions
-* Test all to ensure that authentication based actions are properly evalutated in your reducer
+* Test to ensure that authentication based actions are properly evalutated in your reducer
