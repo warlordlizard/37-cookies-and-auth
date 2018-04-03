@@ -11,6 +11,6 @@ const reporter = store => next => action => {
     console.error('__ERROR__', err);
     return err;
   }
-}
+};
 
 export default reporter;

@@ -7,6 +7,6 @@ import { createStore, applyMiddleware } from 'redux';
 
 const appCreateStore =() => (
   createStore(reducer, applyMiddleware(thunk, reporter))
-)
+);
 
 export default appCreateStore;
