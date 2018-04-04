@@ -4,7 +4,7 @@ import * as util from '../../lib/util.js';
 class ProfileForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = props.profile ? {...props.profile, preview: '' } : { bio: '', pic: null, preview: '' };
+    this.state = props.profile ? {...props.profile, preview: '' } : { bio: '', avatar: null, preview: '' };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -22,11 +22,11 @@ class ProfileForm extends React.Component {
     if(name === 'bio') {
       this.setState({ bio: e.target.value });
     }
-    if (name === 'pic') {
+    if (name === 'avatar') {
       let {files} = e.target;
       let avatar = files[0];
-      this.setState({pic});
-      util.photoToDataUrl(pic)
+      this.setState({avatar});
+      util.photoToDataUrl(avatar)
         .then(preview => this.setState({preview}))
         .catch(console.error);
     }
@@ -47,7 +47,7 @@ class ProfileForm extends React.Component {
         <input 
           type="file"
           onChange={this.handleChange} 
-          name="pic"/>
+          name="avatar"/>
 
         <textarea
           type='text'

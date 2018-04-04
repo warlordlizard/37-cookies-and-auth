@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import ProfileForm from '../profile-form';
 import {profileCreateRequest} from '../../actions/profile-actions.js';
 
-class SettingS extends React.Component {
+class Settings extends React.Component {
   constructor(props) {
     super(props);
     this.handleProfileCreate = this.handleProfileCreate.bind(this);
@@ -24,7 +24,7 @@ class SettingS extends React.Component {
         <h2>Settings:</h2>
         <ProfileForm
           buttonText='create profile'
-          onComplet={this.handleProfileCreate} />
+          onComplete={this.handleProfileCreate} />
       </section>
     );
   }
