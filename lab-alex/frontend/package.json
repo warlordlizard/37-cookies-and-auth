@@ -3,8 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
+  "jest": {
+    "globals": {
+      "__API_URL__":"http://localhost:3000"
+    }
+  },
   "scripts": {
-    "watch": "webpack-dev-server --inline --hot"
+    "watch": "webpack-dev-server --inline --hot",
+    "test": "jest --watchAll"
   },
   "keywords": [],
   "author": "",
@@ -34,5 +40,11 @@
     "url-loader": "^1.0.1",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.2"
+  },
+  "devDependencies": {
+    "babel-jest": "^22.4.3",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^22.4.3"
   }
 }
