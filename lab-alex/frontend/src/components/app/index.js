@@ -1,29 +1,37 @@
 'use strict';
 
 import React from 'react';
-import {Provider} from 'react-redux';
+import {connect} from 'react-redux';
+import * as util from '../../lib/util.js';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 import Header from '../header';
 import Settings from '../settings';
 import Landing from '../landing';
-import appCreateStore from '../../lib/app-create-store.js';
+import {tokenSet} from '../../action/auth-actions.js';
+import {profileFetchRequest} from '../../action/profile-actions.js';
 
-let store = appCreateStore();
 
-export default class App extends React.Component {
+class App extends React.Component {
   render() {
     return(
       <main className='pictogram'>
-        <Provider store={store}>
-          <BrowserRouter>
-            <section>
-              <Header />
-              <Route path='/:auth' component={Landing}></Route>
-              <Route path='/settings' component={Settings}></Route>
-            </section>
-          </BrowserRouter>
-        </Provider>
+        <BrowserRouter>
+          <section>
+            <Header />
+            <Route path='/:auth' component={Landing}/>
+            <Route path='/settings' component={Settings}/>
+            <Route path='/gallery' component={Gallery} />
+          </section>
+        </BrowserRouter>
       </main>
     );
   }
 }
+
+
+let mapDispatchToProps = (dispatch) => ({
+  tokenSet: (token) => dispatch(tokenSet(token)),
+  profileFetch: () => dispatch(profileFetchRequest()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
