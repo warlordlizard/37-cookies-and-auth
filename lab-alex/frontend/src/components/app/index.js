@@ -7,8 +7,9 @@ import {BrowserRouter, Route, Link} from 'react-router-dom';
 import Header from '../header';
 import Settings from '../settings';
 import Landing from '../landing';
-import {tokenSet} from '../../action/auth-actions.js';
-import {profileFetchRequest} from '../../action/profile-actions.js';
+import Gallery from '../gallery';
+import {tokenSet} from '../../actions/auth-actions.js';
+import {profileFetchRequest} from '../../actions/profile-actions.js';
 
 
 class App extends React.Component {
@@ -27,7 +28,9 @@ class App extends React.Component {
     );
   }
 }
-
+let mapStateToProps = (state) => ({
+  profile: state.profile,
+});
 
 let mapDispatchToProps = (dispatch) => ({
   tokenSet: (token) => dispatch(tokenSet(token)),
