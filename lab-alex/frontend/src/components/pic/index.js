@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import PicForm from '../pic-form';
 import * as util from '../../lib/util.js';
+import * as picActions from '../../actions/pic-actions.js';
 
 class Pic extends React.Component {
   constructor(props) {
