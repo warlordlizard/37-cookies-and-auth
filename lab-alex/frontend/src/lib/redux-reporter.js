@@ -1,16 +1,15 @@
 'use strict';
+import * as util from './util.js';
 
-const reporter = store => next => action => {
-  console.log('__ACTION IN REDUX REPORTER__', action);
+export default store => next => action => {
+  console.log('__ACTION__', action);
   try {
     let result = next(action);
-    console.log('__STATE IN REDUX REPORTER__', store.getState());
+    util.log('__STATE__', store.getState());
     return result;
   } catch (err) {
     err.action = action;
-    console.error('__ERROR__', err);
+    util.logError('__ERROR__', err);
     return err;
   }
 };
-
-export default reporter;
