@@ -32,6 +32,6 @@ export const loginRequest = (user) => (dispatch) => {
     .auth(user.username, user.password)
     .then( res => {
       dispatch(tokenSet(res.text));
-      return;
+      return res;
     });
 };
