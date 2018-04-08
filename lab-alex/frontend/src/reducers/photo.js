@@ -1,13 +1,13 @@
 export default (state=[], action) => {
   let {type, payload} = action;
   switch(type) {
-    case 'PIC_SET':
+    case 'PHOTO_SET':
       return payload;
-    case 'PIC_CREATE':
+    case 'PHOTO_CREATE':
       return [payload, ...state];
-    case 'PIC_UPDATE' :
+    case 'PHOTO_UPDATE' :
       return state.map(item => item._id ===payload._id ?payload : item);
-    case 'PIC_DELETE' :
+    case 'PHOTO_DELETE' :
       return state.filter(item => item._id !== payload._id);
     case 'LOGOUT':
       return [];

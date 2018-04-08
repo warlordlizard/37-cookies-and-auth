@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import PicForm from '../pic-form';
+import PhotoForm from '../photo-form';
 import * as util from '../../lib/util.js';
-import * as picActions from '../../actions/pic-actions.js';
+import * as photoActions from '../../actions/photo-actions.js';
 
-class Pic extends React.Component {
+class Photo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {editing: false};
@@ -15,13 +15,13 @@ class Pic extends React.Component {
   }
 
   handleDelete() {
-    return this.props.deletePic(this.props.pic)
+    return this.props.deletePhoto(this.props.photo)
       .then(util.log)
       .catch(util.logError);
   }
 
-  handleUpdate(pic) {
-    return this.props.updatePic(pic)
+  handleUpdate(photo) {
+    return this.props.updatePhoto(photo)
       .then(() => {
         this.setState({editing: false});
       })
@@ -29,13 +29,13 @@ class Pic extends React.Component {
   }
 
   render() {
-    let {pic} = this.props;
+    let {photo} = this.props;
     return(
       <div>
         {util.renderIf(!this.state.editing,
           <div>
-            <img src={pic.url}/>
-            <p>{pic.desc}</p>
+            <img src={photo.url}/>
+            <p>{photo.desc}</p>
             <i onClick={this.handleDelete}
               className='fa fa-trash-o fa-3x' />
             <i onClick={() => this.setState({editing: true})}
@@ -45,9 +45,9 @@ class Pic extends React.Component {
 
         {util.renderIf(this.state.editing,
           <div>
-            <PicForm
-              pic={this.props.pic}
-              buttonText='update pic'
+            <PhotoForm
+              photo={this.props.photo}
+              buttonText='update photo'
               onComplete={this.handleUpdate} />
           </div>
         )}
@@ -56,8 +56,8 @@ class Pic extends React.Component {
   }
 }
 let mapDispatchToProps = (dispatch) => ({
-  deletePic: (pic) => dispatch(picActions.picDeleteRequest(pic)),
-  updatePic: (pic) => dispatch(picActions.picUpdateRequest(pic)),
+  deletePhoto: (photo) => dispatch(photoActions.photoDeleteRequest(photo)),
+  updatePhoto: (photo) => dispatch(photoActions.photoUpdateRequest(photo)),
 });
 
-export default connect(null, mapDispatchToProps)(Pic);
+export default connect(null, mapDispatchToProps)(Photo);

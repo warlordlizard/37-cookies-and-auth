@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import * as util from '../../lib/util.js';
-import * as picActions from '../../actions/pic-actions.js';
+import * as photoActions from '../../actions/photo-actions.js';
 
-import PicForm from '../pic-form';
-import Pic from '../pic';
+import PhotoForm from '../photo-form';
+import Photo from '../photo';
 
 class Gallery extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class Gallery extends React.Component {
   }
 
   componentDidMount() {
-    this.props.picsFetch()
+    this.props.photosFetch()
       .catch(util.logError);
   }
 
@@ -20,14 +20,14 @@ class Gallery extends React.Component {
     return(
       <div className='gallery'>
         <h2>Gallery</h2>
-        <PicForm
+        <PhotoForm
           buttonText='post'
-          onComplete={(pic) =>{
-            return this.props.picCreate(pic)
+          onComplete={(photo) =>{
+            return this.props.photoCreate(photo)
               .catch(util.log);
           }}/>
-        {this.props.pics.map(pic => 
-          <Pic key={pic._id} pic={pic} />
+        {this.props.photos.map(photo => 
+          <Photo key={photo._id} photo={photo} />
         )}
       </div>
     );
@@ -36,12 +36,12 @@ class Gallery extends React.Component {
 
 let mapStateToProps = (state) => ({
   profile: state.profile,
-  pics: state.pics,
+  photos: state.photos,
 });
 
 let mapDispatchToProps = (dispatch) => ({
-  picCreate: (pic) => dispatch(picActions.picCreateRequest(pic)),
-  picsFetch: (pics) => dispatch(picActions.picsFetchRequest(pic)),
+  photoCreate: (photo) => dispatch(photoActions.photoCreateRequest(photo)),
+  photosFetch: (photos) => dispatch(photoActions.photosFetchRequest(photo)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Gallery);

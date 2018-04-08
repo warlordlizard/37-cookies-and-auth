@@ -17,7 +17,7 @@ class Landing extends React.Component {
 
   componentWillReceiveProps(props) {
     if(props.auth && props.profile)
-      props.history.replace('/dashboard');
+      props.history.replace('/gallery');
     if (props.auth && !props.profile)
       props.history.replace('/settings');
   }
@@ -26,7 +26,7 @@ class Landing extends React.Component {
     let {profileFetch, history} = this.props;
     return this.props.login(user)
       .then(() => profileFetch())
-      .then(() => history.push('/dashboard'))
+      .then(() => history.push('/gallery'))
       .catch(util.logError);
   }
 
